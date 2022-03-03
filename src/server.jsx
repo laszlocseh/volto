@@ -163,6 +163,7 @@ server.get('/*', (req, res) => {
   const extractor = new ChunkExtractor({
     statsFile: path.resolve('build/loadable-stats.json'),
     entrypoints: ['client'],
+    publicPath: process.env.RAZZLE_PREFIX_PATH || '',
   });
 
   const url = req.originalUrl || req.url;
