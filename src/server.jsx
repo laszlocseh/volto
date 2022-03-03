@@ -57,7 +57,10 @@ const supported = new locale.Locales(keys(languages), 'en');
 
 const server = express()
   .disable('x-powered-by')
-  .use(express.static(process.env.RAZZLE_PUBLIC_DIR))
+  .use(
+    process.env.RAZZLE_PREFIX_PATH || '',
+    express.static(process.env.RAZZLE_PUBLIC_DIR),
+  )
   .head('/*', function (req, res) {
     // Support for HEAD requests. Required by start-test utility in CI.
     res.send('');
