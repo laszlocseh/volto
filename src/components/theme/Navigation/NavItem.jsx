@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { isInternalURL } from '@plone/volto/helpers';
+import { getBaseUrl, isInternalURL } from '@plone/volto/helpers';
 import config from '@plone/volto/registry';
 import { matchPath } from 'react-router';
 
@@ -12,7 +12,7 @@ const NavItem = ({ item, lang }) => {
   if (isInternalURL(item.url) || item.url === '') {
     return (
       <NavLink
-        to={item.url === '' ? '/' : item.url}
+        to={item.url === '' ? '/' : getBaseUrl(item.url)}
         key={item.url}
         className="item"
         activeClassName="active"
@@ -52,7 +52,7 @@ const NavItem = ({ item, lang }) => {
   } else {
     return (
       <a
-        href={item.url}
+        href={getBaseUrl(item.url)}
         key={item.url}
         className="item"
         rel="noopener noreferrer"
