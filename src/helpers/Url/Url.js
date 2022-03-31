@@ -34,6 +34,7 @@ export const getBaseUrl = memoize((url) => {
   );
 
   adjustedUrl = adjustedUrl || '/';
+  console.log('url: ', url);
   console.log('adjustedUrl: ', adjustedUrl);
   console.log('settings.prefixPath: ', settings.prefixPath);
 
