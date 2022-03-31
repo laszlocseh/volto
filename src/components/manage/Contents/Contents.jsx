@@ -8,7 +8,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { Portal } from 'react-portal';
-import { Link } from 'react-router-dom';
 import {
   Button,
   Confirm,
@@ -68,7 +67,6 @@ import {
 import { Helmet, getBaseUrl } from '@plone/volto/helpers';
 import { injectLazyLibs } from '@plone/volto/helpers/Loadable/Loadable';
 
-import backSVG from '@plone/volto/icons/back.svg';
 import cutSVG from '@plone/volto/icons/cut.svg';
 import deleteSVG from '@plone/volto/icons/delete.svg';
 import copySVG from '@plone/volto/icons/copy.svg';
@@ -1098,7 +1096,7 @@ class Contents extends Component {
   render() {
     const selected = this.state.selected.length > 0;
     const filteredItems = this.state.filteredItems || this.state.selected;
-    const path = getBaseUrl(this.props.pathname);
+    // const path = getBaseUrl(this.props.pathname);
     const folderContentsAction = find(this.props.objectActions, {
       id: 'folderContents',
     });
@@ -1748,21 +1746,8 @@ class Contents extends Component {
                 <Portal node={document.getElementById('toolbar')}>
                   <Toolbar
                     pathname={this.props.pathname}
-                    inner={
-                      <Link
-                        to={`${path}`}
-                        aria-label={this.props.intl.formatMessage(
-                          messages.back,
-                        )}
-                      >
-                        <Icon
-                          name={backSVG}
-                          className="contents circled"
-                          size="30px"
-                          title={this.props.intl.formatMessage(messages.back)}
-                        />
-                      </Link>
-                    }
+                    activity="contents"
+                    inner={<></>}
                   />
                 </Portal>
               )}

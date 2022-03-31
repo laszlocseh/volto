@@ -33,6 +33,7 @@ import {
   Sitemap,
   UsersControlpanel,
   GroupsControlpanel,
+  EditSlot,
 } from '@plone/volto/components';
 
 // Deliberatelly use of absolute path of these components, since we do not want them
@@ -166,6 +167,10 @@ export const defaultRoutes = [
     component: Edit,
   },
   {
+    path: '/edit-slot/:id',
+    component: EditSlot,
+  },
+  {
     path: '/contents',
     component: Contents,
   },
@@ -200,6 +205,10 @@ export const defaultRoutes = [
   {
     path: '/**/edit',
     component: Edit,
+  },
+  {
+    path: '/**/edit-slot/:id',
+    component: EditSlot,
   },
   {
     path: '/**/history',
@@ -248,7 +257,7 @@ export const defaultRoutes = [
  */
 const routes = [
   {
-    path: '/',
+    path: config.settings.prefixPath || '/',
     component: App,
     routes: [
       // redirect to external links if path is in blacklist
@@ -256,10 +265,16 @@ const routes = [
         ...route.match,
         component: NotFound,
       })),
-      // addon routes have a higher priority then default routes
-      ...(config.addonRoutes || []),
-      ...((config.settings?.isMultilingual && multilingualRoutes) || []),
-      ...defaultRoutes,
+      ...[
+        // addon routes have a higher priority then default routes
+        ...(config.addonRoutes || []),
+        ...((config.settings?.isMultilingual && multilingualRoutes) || []),
+        ...defaultRoutes,
+      ].map((route) =>
+        config.settings.prefixPath
+          ? { ...route, path: `${config.settings.prefixPath}${route.path}` }
+          : route,
+      ),
     ],
   },
 ];

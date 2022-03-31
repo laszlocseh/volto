@@ -13,6 +13,7 @@ import {
 import { nonContentRoutes } from './NonContentRoutes';
 import {
   groupBlocksOrder,
+  toolbarGroups,
   requiredBlocks,
   blocksConfig,
   initialBlocks,
@@ -24,6 +25,8 @@ import { loadables } from './Loadables';
 import { sentryOptions } from './Sentry';
 import { contentIcons } from './ContentIcons';
 import { controlPanelsIcons } from './ControlPanels';
+import { defaultToolbar } from './toolbar';
+import defaultSlots from './slots';
 
 import { richtextEditorSettings, richtextViewSettings } from './RichTextEditor';
 
@@ -84,6 +87,7 @@ let config = {
     proxyRewriteTarget: process.env.RAZZLE_PROXY_REWRITE_TARGET || undefined,
     // apiPath: process.env.RAZZLE_API_PATH || 'http://localhost:8000', // for Volto reference
     // apiPath: process.env.RAZZLE_API_PATH || 'http://localhost:8081/db/web', // for guillotina
+    prefixPath: process.env.RAZZLE_PREFIX_PATH || '',
     actions_raising_api_errors: ['GET_CONTENT', 'UPDATE_CONTENT'],
     internalApiPath: process.env.RAZZLE_INTERNAL_API_PATH || undefined,
     websockets: process.env.RAZZLE_WEBSOCKETS || false,
@@ -155,6 +159,7 @@ let config = {
       // },
     ],
     showSelfRegistration: false,
+    useQuantaToolbar: true,
     contentMetadataTagsImageField: 'image',
     hasWorkingCopySupport: false,
     maxUndoLevels: 200, // undo history size for the main form
@@ -174,6 +179,7 @@ let config = {
     requiredBlocks,
     blocksConfig,
     groupBlocksOrder,
+    toolbarGroups,
     initialBlocks,
     initialBlocksFocus,
     showEditBlocksInBabelView: false,
@@ -181,6 +187,8 @@ let config = {
   addonRoutes: [],
   addonReducers: {},
   components,
+  toolbar: defaultToolbar,
+  slots: defaultSlots,
 };
 
 config = applyAddonConfiguration(config);
@@ -193,3 +201,5 @@ ConfigRegistry.addonRoutes = config.addonRoutes;
 ConfigRegistry.addonReducers = config.addonReducers;
 ConfigRegistry.appExtras = config.appExtras;
 ConfigRegistry.components = config.components;
+ConfigRegistry.slots = config.slots;
+ConfigRegistry.toolbar = config.toolbar;

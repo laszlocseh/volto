@@ -14,11 +14,12 @@ import qs from 'query-string';
 
 import {
   ContentMetadataTags,
+  ContentContainer,
   Comments,
   Tags,
   Toolbar,
 } from '@plone/volto/components';
-import { listActions, getContent } from '@plone/volto/actions';
+import { listActions, getContent, getSlots } from '@plone/volto/actions';
 import {
   BodyClass,
   getBaseUrl,
@@ -123,6 +124,7 @@ class View extends Component {
       getBaseUrl(this.props.pathname),
       this.props.versionId,
     );
+    this.props.getSlots(getBaseUrl(this.props.pathname));
     this.setState({ isClient: true });
   }
 
@@ -139,6 +141,7 @@ class View extends Component {
         getBaseUrl(nextProps.pathname),
         this.props.versionId,
       );
+      this.props.getSlots(getBaseUrl(nextProps.pathname));
     }
 
     if (nextProps.actions.object_buttons) {
@@ -234,32 +237,38 @@ class View extends Component {
               : null
           }
         />
-        <RenderedView
-          content={this.props.content}
-          location={this.props.location}
-          token={this.props.token}
-          history={this.props.history}
-        />
-        {config.settings.showTags &&
-          this.props.content.subjects &&
-          this.props.content.subjects.length > 0 && (
-            <Tags tags={this.props.content.subjects} />
-          )}
-        {/* Add opt-in social sharing if required, disabled by default */}
-        {/* In the future this might be parameterized from the app config */}
-        {/* <SocialSharing
+        <ContentContainer content={this.props.content}>
+          <RenderedView
+            content={this.props.content}
+            location={this.props.location}
+            token={this.props.token}
+            history={this.props.history}
+          />
+          {config.settings.showTags &&
+            this.props.content.subjects &&
+            this.props.content.subjects.length > 0 && (
+              <Tags tags={this.props.content.subjects} />
+            )}
+          {/* Add opt-in social sharing if required, disabled by default */}
+          {/* In the future this might be parameterized from the app config */}
+          {/* <SocialSharing
           url={typeof window === 'undefined' ? '' : window.location.href}
           title={this.props.content.title}
           description={this.props.content.description || ''}
         /> */}
-        {this.props.content.allow_discussion && (
-          <Comments pathname={this.props.pathname} />
-        )}
-        {this.state.isClient && (
-          <Portal node={document.getElementById('toolbar')}>
-            <Toolbar pathname={this.props.pathname} inner={<span />} />
-          </Portal>
-        )}
+          {this.props.content.allow_discussion && (
+            <Comments pathname={this.props.pathname} />
+          )}
+          {this.state.isClient && (
+            <Portal node={document.getElementById('toolbar')}>
+              <Toolbar
+                pathname={this.props.pathname}
+                inner={<span />}
+                activity="view"
+              />
+            </Portal>
+          )}
+        </ContentContainer>
       </div>
     );
   }
@@ -283,6 +292,7 @@ export default compose(
     {
       listActions,
       getContent,
+      getSlots,
     },
   ),
 )(View);

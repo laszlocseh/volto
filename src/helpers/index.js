@@ -54,6 +54,8 @@ export {
   previousBlockId,
   applyBlockDefaults,
   applySchemaDefaults,
+  isPlaceholderBlock,
+  cleanupLastPlaceholders,
 } from '@plone/volto/helpers/Blocks/Blocks';
 export BodyClass from '@plone/volto/helpers/BodyClass/BodyClass';
 export ScrollToTop from '@plone/volto/helpers/ScrollToTop/ScrollToTop';
@@ -89,6 +91,7 @@ export {
   resolveExtension,
 } from './Extensions';
 export { asyncConnect } from './AsyncConnect';
+export * from './Slots';
 export { userHasRoles } from './User/User';
 // export { injectLazyLibs } from './Loadable/Loadable';
 export { useDetectClickOutside } from './Utils/useDetectClickOutside';

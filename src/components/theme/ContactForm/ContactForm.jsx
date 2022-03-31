@@ -222,6 +222,7 @@ export class ContactFormComponent extends Component {
               <Toolbar
                 pathname={this.props.pathname}
                 hideDefaultViewButtons
+                activity="contact-form"
                 inner={
                   <Link
                     to={`${getBaseUrl(this.props.pathname)}`}

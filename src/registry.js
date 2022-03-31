@@ -79,7 +79,6 @@ class Config {
   set slots(slots) {
     this._data.slots = slots;
   }
-
   get components() {
     return this._data.components;
   }
@@ -94,6 +93,14 @@ class Config {
 
   register(name, component) {
     this._data.components[name] = component;
+  }
+
+  get toolbar() {
+    return this._data.toolbar;
+  }
+
+  set toolbar(toolbar) {
+    this._data.toolbar = toolbar;
   }
 }
 

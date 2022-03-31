@@ -334,6 +334,7 @@ class Diff extends Component {
             <Toolbar
               pathname={this.props.pathname}
               hideDefaultViewButtons
+              activity="diff"
               inner={
                 <Link
                   to={`${getBaseUrl(this.props.pathname)}/history`}
