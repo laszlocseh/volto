@@ -35,9 +35,9 @@ export const getBaseUrl = memoize((url) => {
 
   adjustedUrl = adjustedUrl || '/';
 
-  if (settings.prefixPath && adjustedUrl.startsWith(settings.prefixPath)) {
-    adjustedUrl = adjustedUrl.slice(settings.prefixPath.length);
-  }
+  // if (settings.prefixPath && adjustedUrl.startsWith(settings.prefixPath)) {
+  //   adjustedUrl = adjustedUrl.slice(settings.prefixPath.length);
+  // }
 
   return adjustedUrl === '/' ? '' : adjustedUrl;
 });
