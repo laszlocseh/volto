@@ -147,16 +147,26 @@ let config = {
     controlPanelsIcons,
     externalRoutes: [
       // URL to be considered as external
-      // {
-      //   match: {
-      //     path: '/news',
-      //     exact: false,
-      //     strict: false,
-      //   },
-      //   url(payload) {
-      //     return payload.location.pathname;
-      //   },
-      // },
+      {
+        match: {
+          path: '/(.*)marine(\-new)?\/assessment-module',
+          exact: false,
+          strict: false,
+        },
+        url(payload) {
+          return payload.location.pathname;
+        },
+      },
+      {
+        match: {
+          path: '/(.*)marine(\-new)?\/countries-and-regional-seas',
+          exact: false,
+          strict: false,
+        },
+        url(payload) {
+          return payload.location.pathname;
+        },
+      },
     ],
     showSelfRegistration: false,
     useQuantaToolbar: true,
