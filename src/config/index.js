@@ -149,7 +149,7 @@ let config = {
       // URL to be considered as external
       {
         match: {
-          path: '/(.*)marine(\-new)?\/assessment-module',
+          path: '/(.*)marine(\-new)?\/assessment-module(.*)',
           exact: false,
           strict: false,
         },
@@ -159,7 +159,7 @@ let config = {
       },
       {
         match: {
-          path: '/(.*)marine(\-new)?\/countries-and-regional-seas',
+          path: '/(.*)marine(\-new)?\/countries-and-regional-seas(.*)',
           exact: false,
           strict: false,
         },
