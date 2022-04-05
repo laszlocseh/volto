@@ -100,12 +100,18 @@ export function getView(url) {
 export function flattenToAppURL(url) {
   const { settings } = config;
 
+  /* 
+    handle cases when prefixPath is provided, and root is on a directory 
+    eg. /marine
+  */
+
   return (
     url &&
     `${settings.prefixPath}${url
       .replace(settings.internalApiPath, '')
       .replace(settings.apiPath, '')
-      .replace(settings.publicURL, '')}`
+      .replace(settings.publicURL, '')
+      .replace(settings.prefixPath, '')}`
   );
 }
 
