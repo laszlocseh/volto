@@ -159,7 +159,7 @@ let config = {
       },
       {
         match: {
-          path: '/(.*)marine(\-new)?\/countries-and-regional-seas(.*)',
+          path: '/(.*)marine(\-new)?\/countries-and-regional-seas/country-profiles(.*)',
           exact: false,
           strict: false,
         },
